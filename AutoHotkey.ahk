@@ -1,5 +1,5 @@
 ﻿#SingleInstance force
-; #Warn  ; Enable warnings to assist with detecting common errors.
+; The most common modifiers are Ctrl (^), Alt (!), Shift (+) and Win (#)
 ; Parameters
 SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
@@ -96,4 +96,11 @@ $CapsLock:: ;When I press CapsLock
 			PostMessage 0x50, 0, fr,, "A"
 		}
 	}
+}
+
+;Toggle ligth/dark mode
++#d:: ;Win+Shift+D
+{
+	CurrentTheme := RegRead("HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme")
+	RegWrite 1 - CurrentTheme, "REG_DWORD", "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme"
 }
