@@ -104,3 +104,19 @@ $CapsLock:: ;When I press CapsLock
 	CurrentTheme := RegRead("HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme")
 	RegWrite 1 - CurrentTheme, "REG_DWORD", "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme"
 }
+
+; Unicode Support — Enter 4 symbol UTF8 code
+#U::SendUnicode()
+SendUnicode()
+{
+	inHook := InputHook("L4")
+	inHook.Start()
+	inHook.Wait()
+	hex := inHook.Input
+  Send "{U+" hex "}"
+}
+
+; ---- Windows Maximizing / Restoring
+; Win + MouseWheel
+#WheelUp:: WinMaximize "A"
+#WheelDown:: WinRestore "A"
