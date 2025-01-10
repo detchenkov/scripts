@@ -1,7 +1,7 @@
 ﻿#SingleInstance force
 ; The most common modifiers are Ctrl (^), Alt (!), Shift (+) and Win (#)
 ; Parameters
-SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
+;SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 SetCapsLockState "Off"
 ru := DllCall("LoadKeyboardLayout", "Str", "a0000419", "Int", 1)
@@ -15,10 +15,24 @@ fr := DllCall("LoadKeyboardLayout", "Str", "0000040c", "Int", 1)
 	SendInput("select top 50 * from{Space}")
 }
 
-; #e::
-; {
-; 	run("explorer.exe C:\Users\detch")
-; }
+;Ctrl+Shift+F in ssms
+#HotIf WinActive("ahk_exe Ssms.exe")
+^+f::
+{
+    SendText("select`r")
+    SendText("S.name as [Schema],`r")
+    SendText("o.name as [Object],`r")
+    SendText("o.type_desc as [Object_Type],`r")
+    SendText("C.text as [Object_Definition]`r")
+    SendText("from `rsys.all_objects O inner join sys.schemas S on O.schema_id = S.schema_id`r")
+    SendText("inner join sys.syscomments C on O.object_id = C.id`r")
+    SendText("where S.schema_id not in (3,4) -- avoid searching in sys and INFORMATION_SCHEMA schemas`r")
+    SendText("and C.text like '%%'`rorder by 1,2")
+    Send("{Up}{End}{Left}{Left}")
+    Send("{Blind}{Ctrl up}")
+    Send("{Blind}{Shift up}")
+}
+#HotIf 
 
 ;Run obsidian
 ^!o::
