@@ -55,7 +55,7 @@ fr := DllCall("LoadKeyboardLayout", "Str", "0000040c", "Int", 1)
 ;To insert date
 ^!d::
 {
-	CurrentDateTime := FormatTime(,"dd/MM/yyyy")
+	CurrentDateTime := FormatTime("L0x00000409","yyyy-MM-dd")
 	SendInput(CurrentDateTime)
 }
 

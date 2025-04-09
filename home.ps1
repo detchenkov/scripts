@@ -2,11 +2,15 @@
 Switch-Desktop 0
 
 #Killing onedrive & SP lists
-taskkill /im  OneDrive.exe
-taskkill /im  Microsoft.SharePoint.exe
+taskkill /im  OneDrive.exe /T /F
+taskkill /im  Microsoft.SharePoint.exe /T /F
 
 #Killing teams
-taskkill /im  ms-teams.exe
+taskkill /im  ms-teams.exe /T /F
 
 #Killing new outlook
-taskkill /im  olk.exe
+taskkill /im  olk.exe /T /F
+
+#Switch-off tailscale
+tailscale set --exit-node ""
+tailscale down
