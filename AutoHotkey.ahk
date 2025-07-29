@@ -1,7 +1,6 @@
 ﻿#SingleInstance force
 ; The most common modifiers are Ctrl (^), Alt (!), Shift (+) and Win (#)
 ; Parameters
-;SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 SetCapsLockState "Off"
 ru := DllCall("LoadKeyboardLayout", "Str", "a0000419", "Int", 1)
@@ -34,19 +33,7 @@ fr := DllCall("LoadKeyboardLayout", "Str", "0000040c", "Int", 1)
 }
 #HotIf 
 
-;Run obsidian
-^!o::
-{
-	run("obsidian://open")
-}
-
-;New note in obsidian
-^!n::
-{
-	run("obsidian://new")
-}
-
-;To run terminal preview
+;To run terminal
 ^!t::
 {
 	run ("wt -w _quake")
@@ -134,3 +121,44 @@ SendUnicode()
 ; Win + MouseWheel
 #WheelUp:: WinMaximize "A"
 #WheelDown:: WinRestore "A"
+
+;Slim pen
+#UseHook
+
+#HotIf WinActive("Concepts")
+
+; Single click on eraser
+~#F20:: {
+	Return
+}
+
+;Double click
+~#F19:: {
+	Return
+}
+
+;Long-click
+~#F18:: {
+	Return
+}
+
+#HotIf
+
+; Single click on eraser
+#F20::
+{
+	Send "{PrintScreen}"
+}
+
+;Double click
+#F19::
+{
+	run("Shell:AppsFolder\TopHatchInc.Concepts_phhqn29e7p872!App")
+}
+
+;Long-click
+#F18::
+{
+	
+}
+#UseHook False

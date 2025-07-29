@@ -19,7 +19,10 @@ $awakeSettings.properties.expirationDateTime = (Get-Date -Hour 16 -Minute 45 -Se
 ($awakeSettings | ConvertTo-Json) | Set-Content $env:LOCALAPPDATA\Microsoft\PowerToys\Awake\settings.json
 
 #Starting tailscale
+tailscale switch 6a7a
 tailscale up
+
+#Setting exit-node if needed
 $currentNet = (Get-NetIPConfiguration | Select-Object -ExpandProperty NetProfile | Where-Object InterfaceAlias -eq "WiFi").Name
 if ($currentNet -like "CTC_*") {
   tailscale set --exit-node $Env:EXIT_NODE
