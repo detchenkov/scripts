@@ -1,5 +1,6 @@
-#Switching to first desktop
-Switch-Desktop 0
+Import-Module D:\Code\Scripts\common.psm1
+
+SetWinBG("D:\iCloudDrive\Downloads\img_3774.jpeg")
 
 #Killing onedrive & SP lists
 taskkill /im  OneDrive.exe /T /F
@@ -13,6 +14,7 @@ taskkill /im  olk.exe /T /F
 
 #Killing forticlient
 taskkill /im  FortiClient.exe /T /F
+
 
 #Switch-off tailscale
 tailscale set --exit-node ""

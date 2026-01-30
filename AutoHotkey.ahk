@@ -7,44 +7,13 @@ ru := DllCall("LoadKeyboardLayout", "Str", "a0000419", "Int", 1)
 en := DllCall("LoadKeyboardLayout", "Str", "00000409", "Int", 1)
 fr := DllCall("LoadKeyboardLayout", "Str", "0000040c", "Int", 1)
 
-; Scripts
-; ssf -> select * from
-::ssf::
-{
-	SendInput("select top 50 * from{Space}")
-}
-
-;Ctrl+Shift+F in ssms
-#HotIf WinActive("ahk_exe Ssms.exe")
-^+f::
-{
-    SendText("select`r")
-    SendText("S.name as [Schema],`r")
-    SendText("o.name as [Object],`r")
-    SendText("o.type_desc as [Object_Type],`r")
-    SendText("C.text as [Object_Definition]`r")
-    SendText("from `rsys.all_objects O inner join sys.schemas S on O.schema_id = S.schema_id`r")
-    SendText("inner join sys.syscomments C on O.object_id = C.id`r")
-    SendText("where S.schema_id not in (3,4) -- avoid searching in sys and INFORMATION_SCHEMA schemas`r")
-    SendText("and C.text like '%%'`rorder by 1,2")
-    Send("{Up}{End}{Left}{Left}")
-    Send("{Blind}{Ctrl up}")
-    Send("{Blind}{Shift up}")
-}
-#HotIf 
 
 ;To run terminal
-^!t::
-{
-	run ("wt -w _quake")
-}
+;^!t::
+;{
+;	run ("wt -w _quake")
+;}
 
-;To insert date
-^!d::
-{
-	CurrentDateTime := FormatTime("L0x00000409","yyyy-MM-dd")
-	SendInput(CurrentDateTime)
-}
 
 ;Caps
 $CapsLock:: ;When I press CapsLock
@@ -119,12 +88,11 @@ SendUnicode()
 
 ; ---- Windows Maximizing / Restoring
 ; Win + MouseWheel
-#WheelUp:: WinMaximize "A"
-#WheelDown:: WinRestore "A"
+;#WheelUp:: WinMaximize "A"
+;#WheelDown:: WinRestore "A"
 
 ;Slim pen
 #UseHook
-
 #HotIf WinActive("Concepts")
 
 ; Single click on eraser

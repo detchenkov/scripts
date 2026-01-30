@@ -1,5 +1,6 @@
-#Switching to second desktop
-Switch-Desktop 1
+Import-Module D:\Code\Scripts\common.psm1
+
+SetWinBG("d:\pictures\concepts\sketches\isitecc\background_simple_2880x1920.jpg")
 
 # Start OneDrive + Sharepoint lists sync
 Start-Process 'C:\Program Files\Microsoft OneDrive\OneDrive.exe' /background
